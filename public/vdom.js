@@ -19,6 +19,7 @@ const render = (vdom, parent = null) => {
     const dom = mount(document.createElement(vdom.type));
 
     for (const child of [].concat(...vdom.children)) {
+      // children 元素也是数组，要拍平
       render(child, dom);
     }
 

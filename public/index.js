@@ -3,7 +3,7 @@ const data = {
   ifShow: true,
   elements: ['elem1', 'elem2', 'elem3']
 };
-let jsx = createElement("View", {
+let jsx = createElement(View, {
   id: "main"
 }, createElement("h2", null, "Title"), createElement("ul", {
   className: "list"
@@ -18,10 +18,12 @@ let jsx = createElement("View", {
   className: "item"
 }, data.ifShow ? "item-2" : ""), data.elements.map(item => createElement("li", {
   className: "item"
-}, item))), createElement("View", {
+}, item))), createElement(View, {
   id: "data",
   show: data.ifShow
-}, createElement("h1", null, "Title")), createElement(List, {
+}, createElement("h1", null, "Title")), createElement("button", {
+  onclick: () => ViewShow.publish("data")
+}, "SHOW"), createElement(List, {
   id: "list",
   textColor: '#87ceeb'
 }));

@@ -16,6 +16,7 @@ let jsx =
         <View id="data" show={data.ifShow}>
             <h1>Title</h1>
         </View>
+        <button onclick={() => ViewShow.publish("data")}>SHOW</button>
         <List id="list" textColor={'#87ceeb'} />
     </View>;
 

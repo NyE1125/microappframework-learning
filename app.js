@@ -10,5 +10,5 @@ app.use(express.static("./public"))
 
 const url = `http://127.0.0.1:8000`;
 app.listen(8000, () => {
-    console.log(`Available on: ` + url);
+    console.log(`Available on: ` + url + `  (press ctrl+c to stop)`);
 })

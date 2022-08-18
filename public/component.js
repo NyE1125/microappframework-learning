@@ -27,17 +27,17 @@ const listDel = {
 
 };
 const ViewShow = {
-    list: [],
+  list: [],
 
-    subscribe(cb) {
-        this.list.push(cb);
-    },
+  subscribe(cb) {
+    this.list.push(cb);
+  },
 
-    publish(arg) {
-        this.list.forEach(cb => {
-            cb && cb(arg);
-        });
-    }
+  publish(arg) {
+    this.list.forEach(cb => {
+      cb && cb(arg);
+    });
+  }
 
 };
 let logicWorker;
