@@ -26,6 +26,20 @@ const listDel = {
   }
 
 };
+const ViewShow = {
+    list: [],
+
+    subscribe(cb) {
+        this.list.push(cb);
+    },
+
+    publish(arg) {
+        this.list.forEach(cb => {
+            cb && cb(arg);
+        });
+    }
+
+};
 let logicWorker;
 
 if (typeof Worker !== "undefined") {
@@ -99,7 +113,7 @@ class List extends Component {
   }
 
   render() {
-    return createElement("view", null, createElement("ul", {
+    return createElement(View, null, createElement("ul", {
       className: "list"
     }, this.state.list.map((item, index) => {
       return createElement(Item, {
@@ -115,7 +129,7 @@ class List extends Component {
           logicWorker.postMessage(JSON.stringify(tmp));
         }
       }, item.text);
-    })), createElement("view", null, createElement("input", {
+    })), createElement(View, null, createElement("input", {
       ref: ele => {
         this.ref = ele;
       }
@@ -132,10 +146,10 @@ class List extends Component {
 
 }
 
-class view extends Component {
+class View extends Component {
   constructor(props) {
     super(props);
-    viewShow.subscribe(this.handleShowSwitch.bind(this));
+    ViewShow.subscribe(this.handleShowSwitch.bind(this));
     this.state = {
       show: true
     };

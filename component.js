@@ -21,7 +21,17 @@ const listDel = {
         });
     },
 };
-
+const ViewShow = {
+    list: [],
+    subscribe(cb) {
+        this.list.push(cb);
+    },
+    publish(arg) {
+        this.list.forEach((cb) => {
+            cb && cb(arg);
+        });
+    },
+};
 let logicWorker;
 if (typeof Worker !== "undefined") {
     if (typeof logicWorker == "undefined") {
@@ -92,7 +102,7 @@ class List extends Component {
     }
 
     render() {
-        return <view>
+        return <View>
             <ul className="list">
                 {this.state.list.map((item, index) => {
                     return <Item style={{ background: item.color, color: this.props.textColor }} onRemoveItem={() => {
@@ -101,21 +111,21 @@ class List extends Component {
                     }}>{item.text}</Item>
                 })}
             </ul>
-            <view>
+            <View>
                 <input ref={(ele) => { this.ref = ele }} />
                 <button onclick={() => {
                     let tmp = { listadd: this.props.id, value: this.ref.value };
                     logicWorker.postMessage(JSON.stringify(tmp));
                 }}>Add</button>
-            </view>
-        </view>;
+            </View>
+        </View>;
     }
 }
 
-class view extends Component {
+class View extends Component {
     constructor(props) {
         super(props);
-        viewShow.subscribe(this.handleShowSwitch.bind(this));
+        ViewShow.subscribe(this.handleShowSwitch.bind(this));
         this.state = { show: true };
         if ("show" in this.props) {
             this.state.show = this.props.show;
