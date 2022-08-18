@@ -3,7 +3,7 @@ const data = {
   ifShow: true,
   elements: ['elem1', 'elem2', 'elem3']
 };
-let jsx = createElement("View", {
+let jsx = createElement("view", {
   id: "main"
 }, createElement("h2", null, "Title"), createElement("ul", {
   className: "list"

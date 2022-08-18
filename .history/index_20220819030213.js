@@ -6,17 +6,17 @@ const data = {
 };
 
 let jsx =
-    <View id="main">
+    <view id="main">
         <h2>Title</h2>
         <ul className="list">
             <li className="item" style={{ background: 'blue', color: 'yellow' }} onClick={() => alert(1)}>{data.item1}</li>
             <li className="item">{data.ifShow ? "item-2" : ""}</li>
             {data.elements.map(item => <li className="item">{item}</li>)}
         </ul >
-        <View id="data" show={data.ifShow}>
+        <view id="data" show={data.ifShow}>
             <h1>Title</h1>
-        </View>
+        </view>
         <List id="list" textColor={'#87ceeb'} />
-    </View>;
+    </view>;
 
 render(jsx, document.getElementById('root'));
